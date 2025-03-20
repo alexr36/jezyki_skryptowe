@@ -13,10 +13,12 @@ def extractSentences():
                     yield sentence.strip()  
                     sentence = ''  
                     paragraph_active = False  
+
                 last_char_was_space = False  
             else:
                 if sentence and not last_char_was_space:  
                     sentence += ' '  
+                    
                 last_char_was_space = True  
             continue  
 
@@ -33,9 +35,28 @@ def extractSentences():
 
 
 def extractWords(sentence):
-    return sentence.split()
+    word = ''
+    
+    for char in sentence:
+        if char.isalnum() or char in "-'":
+            word += char
+        elif word:
+            yield word
+            word = ''
+
+    if word:
+        yield word              
 
 
-def printBuffer(buffer):
-    for elem in buffer:
-        print(elem)
+def countGeneratorElements(gen):
+    return sum(1 for _ in gen)
+
+
+def countAlphanumerals(text):
+    count = 0
+
+    for char in text:
+        if char.isalnum():
+            count += 1
+
+    return count        
