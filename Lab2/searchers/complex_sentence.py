@@ -3,10 +3,9 @@ from aux.aux_methods import extractSentences
 
 def findSecondDegreeComplexSentence():
     result_sentence = ''
-    sentences = extractSentences()
     commas = 0
 
-    for sentence in sentences:
+    for sentence in extractSentences():
         for char in sentence:
             if char == ',':
                 commas += 1

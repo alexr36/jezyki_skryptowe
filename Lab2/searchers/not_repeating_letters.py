@@ -1,4 +1,4 @@
-from aux.aux_methods import extractSentences, extractWords
+from aux.aux_methods import extractSentences, extractWords, countAlphanumerals
 
 
 def findLongestSentenceNotRepeatingLetters():
@@ -6,13 +6,23 @@ def findLongestSentenceNotRepeatingLetters():
 
     for sentence in extractSentences():
         words = extractWords(sentence)
-        words_count = len(words)
 
-        if words_count > 1 and all(
-            words[i][0] != words[i + 1][0] for i in range(words_count - 1)
-        ):
-            if len(longest_sentence) < len(sentence):
-                longest_sentence = sentence
+        try:
+            prev_word = next(words)
+        except StopIteration:
+            continue
+
+        found_repeated = False
+
+        for word in words:
+            if prev_word[0] == word[0]:
+                found_repeated = True
+                break
+            
+            prev_word = word
+
+        if not found_repeated and countAlphanumerals(sentence) > countAlphanumerals(longest_sentence):
+            longest_sentence = sentence
 
     return longest_sentence
 
