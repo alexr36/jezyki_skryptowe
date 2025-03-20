@@ -1,4 +1,4 @@
-from aux.aux_methods import extractSentences, extractWords
+from aux.aux_methods import extractSentences, extractWords, countGeneratorElements
 
 
 def find20FirstSentences():
@@ -6,7 +6,7 @@ def find20FirstSentences():
     sentences_count = 0
 
     for sentence in extractSentences():
-        if len(extractWords(sentence)) < 2:
+        if countGeneratorElements(extractWords(sentence)) < 2:
             continue
 
         if sentence:

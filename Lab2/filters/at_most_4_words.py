@@ -1,11 +1,11 @@
-from aux.aux_methods import extractSentences, extractWords
+from aux.aux_methods import extractSentences, extractWords, countGeneratorElements
 
 
 def findSentencesWithAtMost4Words():
     result_sentences = ''
     
     for sentence in extractSentences():
-        if sentence and len(extractWords(sentence)) < 5:
+        if sentence and countGeneratorElements(extractWords(sentence)) < 5:
             result_sentences += sentence + '\n'
 
     return result_sentences

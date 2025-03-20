@@ -1,16 +1,26 @@
-from aux.aux_methods import extractSentences, extractWords
+from aux.aux_methods import extractSentences, extractWords, countGeneratorElements
 
 def findOrderedSentences():
     result_sentences = ''
 
     for sentence in extractSentences():
-        words = extractWords(sentence)
-        words_count = len(words)
+        words_gen = extractWords(sentence)
+        
+        try:
+            prev_word = next(words_gen)
+        except StopIteration:
+            continue  
 
-        if len(words) < 2:
-            continue
+        found_unordered = False
 
-        if all(words[i] < words[i + 1] for i in range(words_count - 1)):
+        for word in words_gen:
+            if prev_word[0].lower() >= word[0].lower():
+                found_unordered = True
+                break  
+
+            prev_word = word
+
+        if not found_unordered:
             result_sentences += sentence + '\n'
 
     return result_sentences
