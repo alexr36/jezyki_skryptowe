@@ -4,13 +4,18 @@ from aux.aux_methods import extractSentences, extractWords
 def countSentencesWithProperNames():
     proper_names_sentences = 0
     all_sentences = 0
-    sentences = extractSentences()
         
-    for sentence in sentences:
+    for sentence in extractSentences():
         words = extractWords(sentence)
-        all_sentences += 1
                 
-        for word in words[1:]:
+        try:
+            next(words)
+        except StopIteration:
+            continue 
+
+        all_sentences += 1
+
+        for word in words:
             if word[0].isupper():
                 proper_names_sentences += 1
                 break

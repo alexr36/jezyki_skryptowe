@@ -6,7 +6,7 @@ def countCharacters():
 
     for line in sys.stdin:
         for char in line:
-            if not char.isspace():
+            if char.isalnum():
                 symbols += 1
 
     return symbols
