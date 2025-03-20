@@ -1,17 +1,17 @@
 import sys
-from aux.aux_methods import printBuffer
-
-
-def extractContents():
-    printBuffer(processText())
 
 
 def processText():
-    buffer = []
+    buffer = ''
     processPreamble()
 
     for line in sys.stdin:
-        buffer.append(line.strip())
+        line = line.strip()
+
+        if line.isspace():
+            continue
+        
+        buffer += line + '\n'
 
         if '-----' in line: 
             break 
@@ -32,6 +32,10 @@ def processPreamble():
 
         if empty_lines_counter >= 2:
             break
+
+
+def extractContents():
+    print(processText())
 
 
 if __name__ == '__main__': 
