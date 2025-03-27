@@ -50,7 +50,7 @@ def main():
     print(entries_dict)
 
     print("\n=== TASK 3b: Convert log to a dictionary ===")
-    log_dict = task3.log_to_dict(log) # Instead of log_to_dict(log)
+    log_dict = task3.log_to_dict(log)
     print(log_dict)
 
     print("\n=== TASK 3c: Show log info by host ===")
