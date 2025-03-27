@@ -1,0 +1,39 @@
+TS = 'ts'
+UID = 'uid'
+ID_ORIG_H = 'id.orig_h'
+ID_ORIG_P = 'id.orig_p'
+ID_RESP_H = 'id.resp_h'
+ID_RESP_P = 'id.resp_p'
+TRANS_DEPTH = 'trans_depth'
+METHOD = 'method'
+HOST = 'host'
+URI = 'uri'
+REFERRER = 'referrer'
+USER_AGENT = 'user_agent'
+REQUEST_BODY_LEN = 'request_body_len'
+RESPONSE_BODY_LEN = 'response_body_len'
+STATUS_CODE = 'status_code'
+STATUS_MSG = 'status_msg'
+INFO_CODE = 'info_code'
+INFO_MSG = 'info_msg'
+FILENAME = 'filename'
+TAGS = 'tahs'
+USERNAME = 'username'
+PASSWORD = 'password'
+PROXIED = 'proxied'
+ORIG_FUIDS = 'orig_fuids'
+ORIG_MIME_TYPES = 'orig_mime_types'
+RESP_FUIDS = 'resp_fuids'
+RESP_MIME_TYPES = 'resp_mime_types'
+
+ALL_FIELDNAMES = [
+                TS, UID, ID_ORIG_H, 
+                ID_ORIG_P, ID_RESP_H, ID_RESP_P, 
+                TRANS_DEPTH, METHOD, HOST, 
+                URI, REFERRER, USER_AGENT, 
+                REQUEST_BODY_LEN, RESPONSE_BODY_LEN, STATUS_CODE, 
+                STATUS_MSG, INFO_CODE, INFO_MSG, 
+                FILENAME, TAGS, USERNAME, 
+                PASSWORD, PROXIED, ORIG_FUIDS, 
+                ORIG_MIME_TYPES, RESP_FUIDS, RESP_MIME_TYPES
+]
