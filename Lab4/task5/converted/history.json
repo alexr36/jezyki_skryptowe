@@ -1,0 +1,23 @@
+[
+  {
+    "datetime": "2025-04-02T12:29:48.911334",
+    "input_file": "sample_files/MainBefore.jpg",
+    "output_file": "/Users/alexrogozinski/Python/JezykiSkryptowe/Lab/Lab4/task5/converted/20250402-MainBefore.png",
+    "format": "png",
+    "tool": "magick"
+  },
+  {
+    "datetime": "2025-04-02T12:30:21.382278",
+    "input_file": "sample_files/MainBefore.jpg",
+    "output_file": "/Users/alexrogozinski/Python/JezykiSkryptowe/Lab/Lab4/task5/converted/20250402-MainBefore.mp3",
+    "format": "mp3",
+    "tool": "magick"
+  },
+  {
+    "datetime": "2025-04-02T12:30:21.530310",
+    "input_file": "sample_files/file_example_MP4_480_1_5MG.mp4",
+    "output_file": "/Users/alexrogozinski/Python/JezykiSkryptowe/Lab/Lab4/task5/converted/20250402-file_example_MP4_480_1_5MG.mp3",
+    "format": "mp3",
+    "tool": "ffmpeg"
+  }
+]
