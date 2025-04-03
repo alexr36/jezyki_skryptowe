@@ -1,4 +1,5 @@
-import sys, subprocess, os
+import sys, subprocess, json
+from collections import Counter
 
 
 
@@ -46,9 +47,40 @@ def run_analyzis():
 
 
 def show_results():
-    for file, result in run_analyzis().items():
+    #TODO: ogarnij to 
+    results = run_analyzis()
+
+    total_chars = 0
+    total_words = 0
+    total_lines = 0
+    char_counter = Counter()
+    word_counter = Counter()
+
+    for file, result in results.items():
         print(f"STATS FOR FILE '{file}':")
         print(result.stdout)
+
+        try:
+            stats = json.loads(result.stdout)
+            total_chars += stats['chars_count']
+            total_words += stats['words_count']
+            total_lines += stats['lines_count']
+            char_counter[stats['most_common_char']] += 1
+            word_counter[stats['most_common_word']] += 1
+        except Exception:
+            print(f"[WARNING] Could not parse stats for file '{file}")
+
+    print("\nGLOBAL SUMMARY:")
+    print(f"\nRead files: {len(results.items())}")
+    print(f"Total characters: {total_chars}")
+    print(f"Total words: {total_words}")
+    print(f"Total lines: {total_lines}")
+
+    most_common_char = char_counter.most_common(1)[0][0] if char_counter else 'N/A'
+    print(f"Most common character: {most_common_char}")
+
+    most_common_word = word_counter.most_common(1)[0][0] if word_counter else 'N/A'
+    print(f"Most common word: {most_common_word}")
 
 
 

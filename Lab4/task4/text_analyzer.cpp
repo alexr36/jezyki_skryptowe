@@ -113,15 +113,14 @@ TextFileStats analyze_text(const std::string &filepath) {
 
 
 void print_stats(const TextFileStats &stats) {
-    std::cout << 
-           "{\n" <<
-           "    filepath: " << stats.filepath << ",\n" <<
-           "    chars_count: " << stats.chars_count << ",\n" <<
-           "    words_count: " << stats.words_count << ",\n" <<
-           "    lines_count: " << stats.lines_count << ",\n" <<
-           "    most_common_char: " << stats.most_common_char << ",\n" <<
-           "    most_common_word: " << stats.most_common_word << "\n" <<
-           "}\n";
+    std::cout << "{\n"
+    << "  \"filepath\": \"" << stats.filepath << "\",\n"
+    << "  \"chars_count\": " << stats.chars_count << ",\n"
+    << "  \"words_count\": " << stats.words_count << ",\n"
+    << "  \"lines_count\": " << stats.lines_count << ",\n"
+    << "  \"most_common_char\": \"" << stats.most_common_char << "\",\n"
+    << "  \"most_common_word\": \"" << stats.most_common_word << "\"\n"
+    << "}" << std::endl;
 }
 
 
