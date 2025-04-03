@@ -47,7 +47,6 @@ def run_analyzis():
 
 
 def show_results():
-    #TODO: ogarnij to 
     results = run_analyzis()
 
     total_chars = 0
