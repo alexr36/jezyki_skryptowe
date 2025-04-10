@@ -1,5 +1,4 @@
-import re, datetime
-from pathlib import Path
+import re
 from task1 import parse_stations
 from utils import show_list
 
@@ -32,7 +31,7 @@ def extract_coordinates(stations):
         lon = f"{station['longitude']:.6f}"
 
         if pattern.fullmatch(lat) and pattern.fullmatch(lon):
-            coordinates.append((lat, lon))
+            coordinates.append((float(lat), float(lon)))
 
     return coordinates
 
@@ -40,7 +39,7 @@ def extract_coordinates(stations):
 #   c)
 def find_two_part_named_stations(stations):
     two_parts = []
-    pattern = re.compile(r"^[^-\-]+ *[--] *[^-\-]+$")
+    pattern = re.compile(r"^[^\-]+ *[-] *[^\-]+$")
 
     for station in stations:
         name = station['name']
@@ -57,10 +56,24 @@ def normalize_names(stations):
     def normalize(text):
         text = re.sub(r'\s+', '_', text)
         diacritics = {
-            'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l',
-            'ń': 'n', 'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z',
-            'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L',
-            'Ń': 'N', 'Ó': 'O', 'Ś': 'S', 'Ź': 'Z', 'Ż': 'Z'
+            'ą': 'a', 
+            'ć': 'c', 
+            'ę': 'e', 
+            'ł': 'l',
+            'ń': 'n', 
+            'ó': 'o', 
+            'ś': 's', 
+            'ź': 'z', 
+            'ż': 'z',
+            'Ą': 'A', 
+            'Ć': 'C', 
+            'Ę': 'E', 
+            'Ł': 'L',
+            'Ń': 'N', 
+            'Ó': 'O', 
+            'Ś': 'S', 
+            'Ź': 'Z', 
+            'Ż': 'Z'
         }
         
         return ''.join(diacritics.get(char, char) for char in text)
@@ -90,16 +103,16 @@ def find_incorrectly_mob_coded_stations(stations):
 
 #   f)
 def extract_three_part_name_locations(stations):
-    pattern = re.compile(r"^\s*[^-]+?\s*-\s*[^-]+?\s*-\s*[^-]+?\s*$")
-    localizations = []
+    pattern = re.compile(r"\^s*[^-]+?\s*-\s*[^-]+?\s*-\s*[^-]+?\s*$")
+    locations = []
 
     for station in stations:
         location = station['address']
 
         if pattern.match(location):
-            localizations.append(location.strip())
+            locations.append(location.strip())
     
-    return localizations
+    return locations
 
 
 #   g)

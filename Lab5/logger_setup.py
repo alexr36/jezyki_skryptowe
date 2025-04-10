@@ -1,3 +1,8 @@
+# === Globally used logger =====================================================
+# - Logs of levels: INFO, DEBUG, WARNING  --> stdout
+# - Logs of levels: ERROR, CRITICAL       --> stderr
+# ==============================================================================
+
 import logging, sys
 
 
@@ -17,5 +22,5 @@ stderr_handler.setLevel(logging.ERROR)
 stderr_handler.setFormatter(formatter)
 logger.addHandler(stderr_handler)
 
-
+# Defined logger object is the only importable element
 __all__ = ['logger']

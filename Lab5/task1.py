@@ -1,23 +1,7 @@
 import csv, datetime, os
+import constants as cs
 from utils import save_to_json, str_to_date
 from logger_setup import logger
-
-
-CODE = "Kod stacji"
-INTERNATIONAL_CODE = "Kod międzynarodowy"
-NAME = "Nazwa stacji"
-OLD_CODE = "Stary Kod stacji (o ile inny od aktualnego)"
-LAUNCH_DATE = "Data uruchomienia"
-CLOSE_DATE = "Data zamknięcia"
-STATION_TYPE = "Typ stacji"
-AREA_TYPE = "Typ obszaru"
-STATION_KIND = "Rodzaj stacji"
-VOIVODESHIP = "Województwo"
-CITY = "Miejscowość"
-ADDRESS = "Adres"
-LATITUDE = "WGS84 φ N"
-LONGITUDE = "WGS84 λ E"
-
 
 
 
@@ -48,20 +32,20 @@ def parse_stations(filepath):
         for row in reader:
             try:
                 station = {
-                    'code': row[CODE],
-                    'international_code': row[INTERNATIONAL_CODE],
-                    'name': row[NAME],
-                    'old_code': row[OLD_CODE],
-                    'launch_date': parse_date(row[LAUNCH_DATE]),
-                    'close_date': parse_date(row[CLOSE_DATE]),
-                    'station_type': row[STATION_TYPE],
-                    'area_type': row[AREA_TYPE],
-                    'station_kind': row[STATION_KIND],
-                    'voivodeship': row[VOIVODESHIP],
-                    'city': row[CITY],
-                    'address': row[ADDRESS],
-                    'latitude': float(row[LATITUDE]),
-                    'longitude': float(row[LONGITUDE])
+                    'code':               row[cs.CODE],
+                    'international_code': row[cs.INTERNATIONAL_CODE],
+                    'name':               row[cs.NAME],
+                    'old_code':           row[cs.OLD_CODE],
+                    'launch_date':        parse_date(row[cs.LAUNCH_DATE]),
+                    'close_date':         parse_date(row[cs.CLOSE_DATE]),
+                    'station_type':       row[cs.STATION_TYPE],
+                    'area_type':          row[cs.AREA_TYPE],
+                    'station_kind':       row[cs.STATION_KIND],
+                    'voivodeship':        row[cs.VOIVODESHIP],
+                    'city':               row[cs.CITY],
+                    'address':            row[cs.ADDRESS],
+                    'latitude':           float(row[cs.LATITUDE]),
+                    'longitude':          float(row[cs.LONGITUDE])
                 }
 
                 stations.append(station)
@@ -85,20 +69,23 @@ def parse_measurement(filepath):
     try:
         with open(filepath, encoding='utf-8') as file:
             reader = csv.reader(file)
-            headers = [next(reader) for _ in range(7)]
+            headers = [next(reader) for _ in range(7)]  # First 6 rows are headers
             mapping = {
                 i+1: {
-                    'station_code': headers[1][i + 1],
-                    'indicator': headers[2][i + 1],
-                    'unit': headers[4][i + 1],
-                    'station_id': headers[5][i + 1]
+                    'station_code':     headers[1][i + 1],
+                    'indicator':        headers[2][i + 1],
+                    'averaging_time':   headers[3][i + 1],
+                    'unit':             headers[4][i + 1],
+                    'stand_id':         headers[5][i + 1]
                 }
                 for i in range(len(headers[1]) - 1)
             }
 
-            for row_num, row in enumerate(reader, start=8):
+            for row_num, row in enumerate(reader, start=7):
                 raw_line = ','.join(row)
-                logger.debug(f"[Row {row_num}] Read {len(raw_line.encode('utf-8'))} bytes")
+                logger.debug(
+                    f"Row {row_num}: Read {len(raw_line.encode('utf-8'))} bytes"
+                )
 
                 try:
                     timestamp = datetime.datetime.strptime(
@@ -108,33 +95,37 @@ def parse_measurement(filepath):
                     logger.warning(f"Invalid timestamp at row {row_num}: {e}")
                     continue
 
+                # Start from 1 (0 is a timestamp)
                 for i in range(1, len(row)):
                     raw_value = row[i].strip()
+
                     if i not in mapping or not raw_value:
                         continue
-                
 
                     try:
                         val = float(raw_value)
                         m = mapping[i]
                         data.append({
-                            'datetime': timestamp,
+                            'datetime':     timestamp,
                             'station_code': m['station_code'],
-                            'indicator': m['indicator'],
-                            'unit': m['unit'],
-                            'value': val,
-                            'station_id': m['station_id']
+                            'indicator':    m['indicator'],
+                            'unit':         m['unit'],
+                            'avg_time':     m['averaging_time'],
+                            'value':        val,
+                            'stand_id':     m['stand_id']
                         })
                     except ValueError:
                         logger.warning(
-                            f"Invalid float at row {row_num}, col {i + 1}: {row[i]}"
+                            f"Invalid float: row {row_num}, col {i + 1}: {row[i]}"
                         )
         
-            logger.info(f"Finished parsing '{filepath}'. Total: {len(data)} records.")
+            logger.info(
+                f"Finished parsing '{filepath}'. Total: {len(data)} records."
+            )
             return data
 
     except Exception as e:
-        logger.error(f"Critical error while parsing '{filepath}': {e}")
+        logger.error(f"Error while parsing '{filepath}': {e}")
         return []
 
 

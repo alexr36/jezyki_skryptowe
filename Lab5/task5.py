@@ -32,7 +32,7 @@ def get_filtered_measurements(metric, freq, start, end, station=None):
     for measurement in MEASUREMENTS:
         if (
             measurement['indicator'].upper() == metric.upper()
-            and freq in measurement['station_id']
+            and freq in measurement['avg_time']
             and start_date <= measurement['datetime'] <= end_date
             and (station is None or measurement['station_code'] == station)
         ):
@@ -46,7 +46,9 @@ def get_filtered_measurements(metric, freq, start, end, station=None):
 
 
 def handle_random_station(args):
-    matching = get_filtered_measurements(args.metric, args.freq, args.start, args.end)
+    matching = get_filtered_measurements(
+        args.metric, args.freq, args.start, args.end
+    )
 
     if not matching:
         logger.warning("No measurements matching given parameters")
@@ -67,7 +69,9 @@ def handle_random_station(args):
 
 
 def handle_stats(args):
-    matching = get_filtered_measurements(args.metric, args.freq, args.start, args.end, args.station)
+    matching = get_filtered_measurements(
+        args.metric, args.freq, args.start, args.end, args.station
+    )
 
     if not matching:
         logger.warning("No measurements matching given parameters")
@@ -79,22 +83,18 @@ def handle_stats(args):
         logging.warning("Not enough values to compute standard deviation")
         return None
 
-    avg = mean(values)
-    std = stdev(values)
-
-    return (avg, std)
+    return (mean(values), stdev(values))
 
 
 
 def main():
     args = parse_args()
-
     global STATIONS, MEASUREMENTS
-
     STATIONS = parse_stations('data/stacje.csv')
     MEASUREMENTS = parse_all_measurements('data/measurements')
+    subcommand = args.command
 
-    if args.command == "random_station":
+    if subcommand == "random_station":
         station = handle_random_station(args)
 
         if station:
@@ -102,7 +102,7 @@ def main():
         else:
             print("No station's data found")
 
-    elif args.command == "stats":
+    elif subcommand == "stats":
         stats = handle_stats(args)
 
         if stats:
