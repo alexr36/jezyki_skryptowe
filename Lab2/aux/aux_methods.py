@@ -1,7 +1,7 @@
 import sys
 
 
-def extractSentences():
+def extract_sentences():
     sentence = ''
     paragraph_active = False
     last_char_was_space = False  
@@ -34,7 +34,7 @@ def extractSentences():
         yield sentence.strip()
 
 
-def extractWords(sentence):
+def extract_words(sentence):
     word = ''
     
     for char in sentence:
@@ -48,11 +48,11 @@ def extractWords(sentence):
         yield word              
 
 
-def countGeneratorElements(gen):
+def count_generator_elements(gen):
     return sum(1 for _ in gen)
 
 
-def countAlphanumerals(text):
+def count_alphanumerals(text):
     count = 0
 
     for char in text:
