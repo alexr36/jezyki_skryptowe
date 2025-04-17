@@ -1,21 +1,21 @@
-from aux.aux_methods import extractSentences, countAlphanumerals
+from aux.aux_methods import extract_sentences, count_alphanumerals
 
 
-def findLongestSentence():
+def find_longest_sentence():
     longest_sentence = ''
 
-    for sentence in extractSentences():
+    for sentence in extract_sentences():
         sentence = sentence.strip()
 
-        if countAlphanumerals(sentence) > countAlphanumerals(longest_sentence):
+        if count_alphanumerals(sentence) > count_alphanumeralss(longest_sentence):
             longest_sentence = sentence
 
     return longest_sentence
 
 
-def printLongestSentence():
-    print(findLongestSentence())
+def print_longest_sentence():
+    print(find_longest_sentence())
 
 
 if __name__ == '__main__':
-    printLongestSentence()
+    print_longest_sentence()
