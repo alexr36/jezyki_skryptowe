@@ -1,11 +1,11 @@
-from aux.aux_methods import extractSentences, extractWords, countAlphanumerals
+from aux.aux_methods import extract_sentences, extract_words, count_alphanumerals
 
 
-def findLongestSentenceNotRepeatingLetters():
+def find_longest_sentence_not_repeating_letters():
     longest_sentence = ''
 
-    for sentence in extractSentences():
-        words = extractWords(sentence)
+    for sentence in extract_sentences():
+        words = extract_words(sentence)
 
         try:
             prev_word = next(words)
@@ -21,15 +21,15 @@ def findLongestSentenceNotRepeatingLetters():
             
             prev_word = word
 
-        if not found_repeated and countAlphanumerals(sentence) > countAlphanumerals(longest_sentence):
+        if not found_repeated and count_alphanumerals(sentence) > count_alphanumerals(longest_sentence):
             longest_sentence = sentence
 
     return longest_sentence
 
 
-def printSentence():
-    print(findLongestSentenceNotRepeatingLetters())
+def print_sentence():
+    print(find_longest_sentence_not_repeating_letters())
 
 
 if __name__ == '__main__':
-    printSentence()    
+    print_sentence()    
