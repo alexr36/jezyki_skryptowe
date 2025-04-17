@@ -1,12 +1,12 @@
-from aux.aux_methods import extractSentences, extractWords
+from aux.aux_methods import extract_sentences, extract_words
 
 
-def countSentencesWithProperNames():
+def count_sentences_with_proper_names():
     proper_names_sentences = 0
     all_sentences = 0
         
-    for sentence in extractSentences():
-        words = extractWords(sentence)
+    for sentence in extract_sentences():
+        words = extract_words(sentence)
                 
         try:
             next(words)
@@ -26,9 +26,9 @@ def countSentencesWithProperNames():
         return 0
     
 
-def printCountSentences():
-    print(f"{countSentencesWithProperNames():.2f}%")
+def print_count_sentences():
+    print(f"{count_sentences_with_proper_names():.2f}%")
 
 
 if __name__ == '__main__':
-    printCountSentences()    
+    print_count_sentences()    
