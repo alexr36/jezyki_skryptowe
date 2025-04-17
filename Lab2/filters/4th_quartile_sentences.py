@@ -1,4 +1,4 @@
-from aux.aux_methods import extractSentences, countAlphanumerals
+from aux.aux_methods import extract_sentences, count_alphanumerals
 
 
 def find_4th_quartile_sentences():
