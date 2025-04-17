@@ -1,10 +1,10 @@
-from aux.aux_methods import extractSentences, extractWords, countGeneratorElements
+from aux.aux_methods import extract_sentences, extract_words
 
-def findOrderedSentences():
+def find_ordered_sentences():
     result_sentences = ''
 
-    for sentence in extractSentences():
-        words_gen = extractWords(sentence)
+    for sentence in extract_sentences():
+        words_gen = extract_words(sentence)
         
         try:
             prev_word = next(words_gen)
@@ -26,10 +26,10 @@ def findOrderedSentences():
     return result_sentences
 
 
-def printOrderedSetnences():
-    print(findOrderedSentences())
+def print_ordered_sentences():
+    print(find_ordered_sentences())
 
 
 if __name__ == '__main__':
-    printOrderedSetnences()
+    print_ordered_sentences()
     
