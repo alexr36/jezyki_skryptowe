@@ -1,9 +1,9 @@
 import sys
 
 
-def processText():
+def process_text():
     buffer = ''
-    processPreamble()
+    process_preamble()
 
     for line in sys.stdin:
         line = line.strip()
@@ -19,7 +19,7 @@ def processText():
     return buffer
 
 
-def processPreamble():
+def process_preamble():
     empty_lines_counter = 0
 
     for _ in range(10):
@@ -34,9 +34,9 @@ def processPreamble():
             break
 
 
-def extractContents():
-    print(processText())
+def extract_contents():
+    print(process_text())
 
 
 if __name__ == '__main__': 
-    extractContents()
+    extract_contents()
