@@ -1,14 +1,14 @@
-from aux.aux_methods import extractSentences, extractWords
+from aux.aux_methods import extract_sentences, extract_words
 
 
-def findSentencesWithConjunctions():
+def find_sentences_with_conjunctions():
     result_sentences = ''
 
-    for sentence in extractSentences():
+    for sentence in extract_sentences():
         conjunctions_count = 0
 
-        for word in extractWords(sentence):
-            if isConjunction(word):
+        for word in extract_words(sentence):
+            if is_conjunction(word):
                 conjunctions_count += 1
 
         if conjunctions_count >= 2:
@@ -17,13 +17,13 @@ def findSentencesWithConjunctions():
     return result_sentences    
 
 
-def isConjunction(word):
+def is_conjunction(word):
      return word == 'i' or word == 'oraz' or word == 'ale' or word == 'że' or word == 'lub'
 
 
-def printSentencesWithConjunctions():
-    print(findSentencesWithConjunctions())
+def print_sentences_with_conjunctions():
+    print(find_sentences_with_conjunctions())
 
 
 if __name__ == '__main__':
-    printSentencesWithConjunctions()    
+    print_sentences_with_conjunctions()    
