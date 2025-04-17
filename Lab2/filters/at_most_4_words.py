@@ -1,19 +1,19 @@
-from aux.aux_methods import extractSentences, extractWords, countGeneratorElements
+from aux.aux_methods import extract_sentences, extract_words, count_generator_elements
 
 
-def findSentencesWithAtMost4Words():
+def find_sentences_with_at_most_words():
     result_sentences = ''
     
-    for sentence in extractSentences():
-        if sentence and countGeneratorElements(extractWords(sentence)) < 5:
+    for sentence in extract_sentences():
+        if sentence and count_generator_elements(extract_words(sentence)) < 5:
             result_sentences += sentence + '\n'
 
     return result_sentences
 
 
-def printSentencesWithAtMost4Words():
-    print(findSentencesWithAtMost4Words())
+def print_sentences_with_at_most_words():
+    print(find_sentences_with_at_most_words())
 
 
 if __name__ == '__main__':
-    printSentencesWithAtMost4Words()
+    print_sentences_with_at_most_word()
