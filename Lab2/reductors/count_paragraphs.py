@@ -1,7 +1,7 @@
 import sys
 
 
-def countParagraphs():
+def count_paragraphs():
     paragraphs = 0
     in_paragraph = False
 
@@ -17,9 +17,9 @@ def countParagraphs():
     return paragraphs
 
 
-def printCountParagraphs():
-    print(countParagraphs())
+def print_count_paragraphs():
+    print(count_paragraphs())
 
 
 if __name__ == '__main__':
-    printCountParagraphs()
+    print_count_paragraphs()
