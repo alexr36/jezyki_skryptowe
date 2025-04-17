@@ -1,7 +1,7 @@
 import sys
 
 
-def countCharacters():
+def count_characters():
     symbols = 0
 
     for line in sys.stdin:
@@ -12,9 +12,9 @@ def countCharacters():
     return symbols
 
 
-def printCountCharacters():
-    print(countCharacters())
+def print_count_characters():
+    print(count_characters())
 
 
 if __name__ == '__main__':
-    printCountCharacters()
+    print_count_characters()
