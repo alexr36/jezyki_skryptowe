@@ -1,11 +1,11 @@
-from aux.aux_methods import extractSentences
+from aux.aux_methods import extract_sentences
 
 
-def findSecondDegreeComplexSentence():
+def find_second_degree_complex_sentence():
     result_sentence = ''
     commas = 0
 
-    for sentence in extractSentences():
+    for sentence in extract_sentences():
         for char in sentence:
             if char == ',':
                 commas += 1
@@ -17,9 +17,9 @@ def findSecondDegreeComplexSentence():
     return result_sentence
 
 
-def printSentence():
-    print(findSecondDegreeComplexSentence())
+def print_sentence():
+    print(find_second_degree_complex_sentence())
 
 
 if __name__ == '__main__':
-    printSentence()
+    print_sentence()
