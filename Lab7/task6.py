@@ -15,7 +15,7 @@ def log(level=logging.INFO):
             def new_init(self, *args, **kwargs):
                 logging.log(
                     level, (
-                        f"Instantiaging {object.__name__!r} "
+                        f"Instantiating {object.__name__!r} "
                         f"with args={args}, kwargs={kwargs}"
                     )
                 )
