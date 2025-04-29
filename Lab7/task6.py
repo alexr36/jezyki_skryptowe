@@ -69,7 +69,7 @@ class Example:
 def main():
     logging.basicConfig(level=logging.DEBUG, format='[%(levelname)s] %(message)s')
     add(5, 7)
-    Example("Alex")
+    Example('Alex')
 
 
 
