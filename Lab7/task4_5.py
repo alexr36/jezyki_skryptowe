@@ -61,42 +61,32 @@ def demonstrate_gen(generator, count, name):
     print()
 
 
-
-def show_task_4(count):
-    print("########### TASK 4 ###########")
-    fibonacci_gen = make_generator(fibonacci)
+def show_task(count, make_gen, task_num):
+    print(f"########### TASK {task_num} ###########")
+    fibonacci_gen = make_gen(fibonacci)
     demonstrate_gen(fibonacci_gen, count, 'Fibonacci sequence')
 
-    catalan_gen = make_generator(catalan)
+    catalan_gen = make_gen(catalan)
     demonstrate_gen(catalan_gen, count, 'Catalan numbers')
 
-    arithmetic_gen = make_generator(series_arithmetic)
+    arithmetic_gen = make_gen(series_arithmetic)
     demonstrate_gen(arithmetic_gen, count, 'Arithmetic series')
 
-    geometric_gen = make_generator(series_geometric)
+    geometric_gen = make_gen(series_geometric)
     demonstrate_gen(geometric_gen, count, 'Geometric series')
 
-    power_gen = make_generator(series_power)
-    demonstrate_gen(power_gen, count, 'Power series')   
+    power_gen = make_gen(series_power)
+    demonstrate_gen(power_gen, count, 'Power series') 
+
+
+
+def show_task_4(count):
+    show_task(count, make_generator, 4)
 
 
 
 def show_task_5(count):
-    print("########### TASK 5 ###########")
-    fibonacci_gen = make_generator_mem(fibonacci)
-    demonstrate_gen(fibonacci_gen, count, 'Fibonacci sequence')
-
-    catalan_gen = make_generator_mem(catalan)
-    demonstrate_gen(catalan_gen, count, 'Catalan numbers')
-
-    arithmetic_gen = make_generator_mem(series_arithmetic)
-    demonstrate_gen(arithmetic_gen, count, 'Arithmetic series')
-
-    geometric_gen = make_generator_mem(series_geometric)
-    demonstrate_gen(geometric_gen, count, 'Geometric series')
-
-    power_gen = make_generator_mem(series_power)
-    demonstrate_gen(power_gen, count, 'Power series')   
+    show_task(count, make_generator_mem, 5) 
 
 
 def main():
