@@ -61,6 +61,7 @@ def demonstrate_gen(generator, count, name):
     print()
 
 
+
 def show_task(count, make_gen, task_num):
     print(f"########### TASK {task_num} ###########")
     fibonacci_gen = make_gen(fibonacci)
