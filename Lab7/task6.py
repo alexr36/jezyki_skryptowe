@@ -7,6 +7,8 @@ from datetime import datetime
 def log(level=logging.INFO):
     def decorator(object):
         if isinstance(object, type):
+            # If passed object is a (class) type,
+            # wrap it's __init__ method, instantiate it and log info
             old_init = object.__init__
 
             @wraps(old_init)
@@ -22,6 +24,7 @@ def log(level=logging.INFO):
             object.__init__ = new_init
             return object
         else:
+            # If passed object is a function, wrap it, execute and log info
             func_name = object.__name__
 
             @wraps(object)
