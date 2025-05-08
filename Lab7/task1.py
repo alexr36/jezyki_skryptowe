@@ -40,13 +40,13 @@ def make_alpha_dict(text):
     words = text.split()
     chars = sorted(set(filter(str.isalpha, text)), reverse=True)
 
-    return [{
+    return {
         char: [
             word for word in words 
             if char in word
         ] 
         for char in chars
-    }]
+    }
 
 
 # e)
