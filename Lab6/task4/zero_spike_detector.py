@@ -1,4 +1,3 @@
-import numpy as np
 from .series_validator import SeriesValidator
 from task2_3.time_series import TimeSeries 
 
@@ -10,7 +9,7 @@ class ZeroSpikeDetector(SeriesValidator):
         count = 0
 
         for i, value in enumerate(series.values):
-            if value == 0 or np.isnan(value):
+            if value == 0 or value is None:
                 count += 1
 
                 if count >= 3:
