@@ -21,6 +21,7 @@ def make_generator_mem(func):
 
 # -- Fibonacci sequence and Catalan numbers ------------------------------------
 
+@lru_cache(maxsize=None)
 def fibonacci(n):
     if n < 2:
         return n
@@ -29,6 +30,7 @@ def fibonacci(n):
 
 
 # c_n = c_(n-1) * 2(2n-1)/(n+1)
+@lru_cache(maxsize=None)
 def catalan(n):
     if n == 0:
         return 1
