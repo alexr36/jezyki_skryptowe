@@ -5,29 +5,29 @@ from datetime import datetime
 
 
 def log(level=logging.INFO):
-    def decorator(object):
-        if isinstance(object, type):
+    def decorator(obj):
+        if isinstance(obj, type):
             # If passed object is a (class) type,
             # wrap it's __init__ method, instantiate it and log info
-            old_init = object.__init__
+            old_init = obj.__init__
 
             @wraps(old_init)
             def new_init(self, *args, **kwargs):
                 logging.log(
                     level, (
-                        f"Instantiating {object.__name__!r} "
+                        f"Instantiating {obj.__name__!r} "
                         f"with args={args}, kwargs={kwargs}"
                     )
                 )
                 old_init(self, *args, **kwargs)
             
-            object.__init__ = new_init
-            return object
+            obj.__init__ = new_init
+            return obj
         else:
             # If passed object is a function, wrap it, execute and log info
-            func_name = object.__name__
+            func_name = obj.__name__
 
-            @wraps(object)
+            @wraps(obj)
             def wrapper(*args, **kwargs):
                 start_time = time.time()
                 logging.log(
@@ -38,7 +38,7 @@ def log(level=logging.INFO):
                     )
                 )
 
-                result = object(*args, **kwargs)
+                result = obj(*args, **kwargs)
                 end_time = time.time()
                 logging.log(
                     level, (
