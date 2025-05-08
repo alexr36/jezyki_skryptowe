@@ -1,4 +1,4 @@
-import abc, numpy as np
+import abc
 from task2_3 import time_series
 
 
