@@ -3,12 +3,7 @@ from utils import *
 
 # a)
 def acronym(words):
-    if words is not None or len(words) > 0:
-        return ''.join(
-            map(lambda word: word[0].upper() 
-            if word is not None 
-            else '', words)
-        )
+    return ''.join(map(lambda word: word[0].upper() if word is not None else '', words))
 
 
 # b)
