@@ -14,7 +14,6 @@ class TimeSeries:
         self.unit = unit
 
 
-
     def __getitem__(self, key):
         if isinstance(key, (int, slice)):
             return list(zip(self.timestamps, self.values))[key]
@@ -25,7 +24,7 @@ class TimeSeries:
 
             for timestamp, value in zip(self.timestamps, self.values):
                 if is_date and timestamp.date() == key:
-                    matches.append[value]
+                    matches.append(value)
                 elif timestamp == key:
                     matches.append(value)
 
@@ -37,7 +36,6 @@ class TimeSeries:
         raise TypeError(f"Unsupported key type: {type(key)}")
     
 
-
     def __str__(self):
         return (
             f"'indicator:'  {self.indic}\n"
@@ -48,7 +46,6 @@ class TimeSeries:
             f"'unit':       {self.unit}"
         )
     
-
 
     def __repr__(self):
         return (
