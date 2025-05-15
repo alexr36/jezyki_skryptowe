@@ -3,6 +3,8 @@ import string, random
 
 class PasswordGenerator:
     def __init__(self, length, charset=string.ascii_letters+string.digits, count=10):
+        if length <= 0: length = 1
+        if count <= 0: count = 1
         self.length = length
         self.charset = charset
         self.count = count
