@@ -1,8 +1,8 @@
-from task4.outlier_detector import OutlierDetector
+from task4.outlier_detector    import OutlierDetector
 from task4.zero_spike_detector import ZeroSpikeDetector
-from task4.threshold_detector import ThresholdDetector
-from .simple_reporter import SimpleReporter
-from task5_6.measurements import Measurements
+from task4.threshold_detector  import ThresholdDetector
+from .simple_reporter          import SimpleReporter
+from task5_6.measurements      import Measurements
 
 
 
@@ -11,7 +11,6 @@ def get_example_series():
     measurements = Measurements(path)
     all_series = measurements._load_all()
     return all_series[0] if all_series else None
-
 
 
 def run_tests():
@@ -27,7 +26,6 @@ def run_tests():
 
         for message in validator.analyze(get_example_series()):
             print(f"    - {message}")
-
 
 
 if __name__ == '__main__':
