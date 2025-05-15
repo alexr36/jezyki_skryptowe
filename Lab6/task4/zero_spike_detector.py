@@ -1,5 +1,5 @@
-from .series_validator import SeriesValidator
-from task2_3.time_series import TimeSeries 
+from task4.series_validator import SeriesValidator
+from task2_3.time_series    import TimeSeries 
 
 
 
@@ -16,7 +16,7 @@ class ZeroSpikeDetector(SeriesValidator):
                     messages.append(
                         f"Zero or missing data spike from index {i - 2} to {i}"
                     )
-                else:
-                    count = 0
+            else:
+                count = 0
         
         return messages
