@@ -1,4 +1,4 @@
-from .series_validator import SeriesValidator
+from .series_validator   import SeriesValidator
 from task2_3.time_series import TimeSeries
 
 
@@ -6,7 +6,6 @@ from task2_3.time_series import TimeSeries
 class ThresholdDetector(SeriesValidator):
     def __init__(self, threshold):
         self.threshold = threshold
-
 
 
     def analyze(self, series: TimeSeries) -> list[str]:
