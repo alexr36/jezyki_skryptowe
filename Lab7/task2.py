@@ -13,11 +13,13 @@ def exists(pred, iterable):
 
 # c)
 def atleast(n, pred, iterable):
+    if n < 0: return False
     return sum(map(pred, iterable)) >= n
 
 
 # d)
 def atmost(n, pred, iterable):
+    if n < 0: return False
     return sum(map(pred, iterable)) <= n
 
 
