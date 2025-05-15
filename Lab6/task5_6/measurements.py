@@ -1,18 +1,17 @@
 import re, csv, datetime, numpy as np
-from pathlib import Path
-from task2_3.time_series import TimeSeries
-from logger_setup import logger
+from pathlib                import Path
+from task2_3.time_series    import TimeSeries
+from logger_setup           import logger
 from task4.series_validator import *
 
 
-class Measurements():
+class Measurements(): 
     '''Class aggregating data regarding one indicator'''  
 
     def __init__(self, directory):
         self.directory = Path(directory)
         self.files = self._index_files()
         self._cache = {}
-
 
 
     def _index_files(self):
@@ -31,7 +30,6 @@ class Measurements():
         return files
     
 
-
     def _load_file(self, filepath, meta):
         series_list = []
 
@@ -41,12 +39,11 @@ class Measurements():
                 headers = [next(reader) for _ in range(7)]
 
                 station_codes = headers[1][1:]
-                indicators = headers[2][1:]
-                avg_times = headers[3][1:]
-                units = headers[4][1:]
-
-                timestamps = []
-                values = [[] for _ in station_codes]
+                indicators    = headers[2][1:]
+                avg_times     = headers[3][1:]
+                units         = headers[4][1:]
+                timestamps    = []
+                values        = [[] for _ in station_codes]
 
                 for row_num, row in enumerate(reader, start=7):
                     try:
@@ -63,19 +60,18 @@ class Measurements():
 
                 for i in range(len(station_codes)):
                     series = TimeSeries(
-                        indic=indicators[i],
-                        code=station_codes[i],
-                        avg_time=avg_times[i],
-                        timestamps=timestamps,
-                        values=values[i],
-                        unit=units[i]
+                        indic      = indicators[i],
+                        code       = station_codes[i],
+                        avg_time   = avg_times[i],
+                        timestamps = timestamps,
+                        values     = values[i],
+                        unit       = units[i]
                     )
                     series_list.append(series)
         except Exception as e:
             logger.error(f"Failed to parse file {filepath!r}: {e}")
 
         return series_list
-
 
 
     def _load_all(self):
@@ -92,10 +88,8 @@ class Measurements():
         return all_series
 
 
-
     def __len__(self):
         return len(self.files)
-
 
 
     def __contains__(self, parameter_name: str):
@@ -103,7 +97,6 @@ class Measurements():
             measurement['parameter'].lower() == parameter_name.lower()
             for _, measurement in self.files
         )
-
 
 
     def get_by_parameter(self, param_name: str):
@@ -116,7 +109,6 @@ class Measurements():
         return results
 
 
-
     def get_by_station(self, station_code: str) -> list[TimeSeries]:
         results = []
 
@@ -126,7 +118,6 @@ class Measurements():
         
         return results
     
-
 
     def detect_all_anomalies(
             self, validators: list[SeriesValidator], 
