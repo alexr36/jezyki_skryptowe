@@ -1,4 +1,4 @@
-from .series_validator import SeriesValidator
+from .series_validator   import SeriesValidator
 from task2_3.time_series import TimeSeries
 
 
@@ -7,8 +7,7 @@ class OutlierDetector(SeriesValidator):
     def __init__(self, k: float = 1.0):
         self.k = k
 
-    
-    
+
     def analyze(self, series: TimeSeries) -> list[str]:
         mean = series.mean
         std = series.stddev
