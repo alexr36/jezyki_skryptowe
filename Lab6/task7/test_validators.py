@@ -1,14 +1,14 @@
-from task4.outlier_detector import OutlierDetector
+from task4.outlier_detector    import OutlierDetector
 from task4.zero_spike_detector import ZeroSpikeDetector
-from task4.threshold_detector import ThresholdDetector
-from task5_6.measurements import Measurements
+from task4.threshold_detector  import ThresholdDetector
+from task5_6.measurements      import Measurements
 
 
 def run_tests():
     directory = '../data/measurements'
     measurements = Measurements(directory)
     validators = [
-        OutlierDetector(k=3),
+        OutlierDetector(k=3.0),
         ZeroSpikeDetector(),
         ThresholdDetector(threshold=100.0)
     ]
