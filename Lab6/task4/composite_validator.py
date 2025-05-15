@@ -1,4 +1,4 @@
-from series_validator import SeriesValidator
+from series_validator    import SeriesValidator
 from task2_3.time_series import TimeSeries
 
 
@@ -7,7 +7,6 @@ class CompositeValidator(SeriesValidator):
     def __init__(self, validators, mode='OR'):
         self.validators = validators
         self.mode = mode.upper()
-
 
 
     def analyze(self, series: TimeSeries) -> list[str]:
@@ -29,5 +28,5 @@ class CompositeValidator(SeriesValidator):
                 combined.extend(messages)
                 
             return combined
-        else:
-            return [f"Unknown mode: {self.mode!r}"]
+        
+        return [f"Unknown mode: {self.mode!r}"]
