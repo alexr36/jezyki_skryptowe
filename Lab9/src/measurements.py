@@ -1,6 +1,6 @@
 import re, csv, datetime, numpy as np
 from pathlib                         import Path
-from src.time_series                  import TimeSeries
+from src.time_series                 import TimeSeries
 from src.logger_setup                import logger
 from src.validators.series_validator import *
 from typing                          import Optional, Iterator
