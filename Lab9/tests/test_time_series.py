@@ -1,5 +1,5 @@
 import pytest
-from tests.fixtures import time_series_sample, time_series_w_nan_sample
+from tests.fixtures import time_series_sample, time_series_w_none_sample
 from datetime       import date
 
 # -- 4b) -----------------------------------------------------------------------
@@ -30,6 +30,6 @@ def test_time_series_mean_stddev_complete(time_series_sample):
     assert round(time_series_sample.stddev, 5) ==  8.16497
 
 # ii.
-def test_time_series_mean_stddev_incomplete(time_series_w_nan_sample):
-    assert time_series_w_nan_sample.mean == 20.0
-    assert round(time_series_w_nan_sample.stddev, 5) == 10.0
+def test_time_series_mean_stddev_incomplete(time_series_w_none_sample):
+    assert time_series_w_none_sample.mean == 20.0
+    assert round(time_series_w_none_sample.stddev, 5) == 10.0
