@@ -136,7 +136,7 @@ class Measurements():
                 all_issues : list[str] = []
 
                 for validator in validators:
-                    issues : list[str ]= validator.analyze(series)
+                    issues : list[str] = validator.analyze(series)
 
                     if issues:
                         all_issues.extend(issues)
