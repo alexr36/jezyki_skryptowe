@@ -42,7 +42,7 @@ def time_series_sample():
 
 
 @pytest.fixture
-def time_series_w_nan_sample():
+def time_series_w_none_sample():
     timestamps = [
         datetime(2025, 1, 1, 12),
         datetime(2025, 1, 2, 12),
